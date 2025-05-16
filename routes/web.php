@@ -11,12 +11,13 @@ Route::get('/about', function () {
     return view('about', ['title' => 'about']);
 });
 Route::get('/posts', function () {
-    return view('posts', ['title' => 'blog', 'posts' => Post::allPost()]);
+    return view('posts', ['title' => 'blog', 'posts' => Post::all()]);
 });
 
-Route::get('/posts/{slug}', function($slug){
+// change to route model binding
+Route::get('/posts/{post:slug}', function(Post $post){
 
-    $post = Post::find($slug);
+    // $post = Post::find($slug);
 
     return view('post', ['title' => 'Single Post', 'post' => $post]);
 
