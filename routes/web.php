@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Arr;
@@ -37,6 +38,13 @@ Route::get('/authors/{author}', function(User $author){
     return view('posts', [
         'title' => 'Posts by ' . $author->name,
         'posts' => $author->posts
+    ]);
+});
+
+Route::get('/categories/{category}', function(Category $category){
+    return view('posts', [
+        'title' => 'Posts in ' . $category->name,
+        'posts' => $category->posts
     ]);
 });
 

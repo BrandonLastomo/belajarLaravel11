@@ -21,10 +21,16 @@ return new class extends Migration
             // $table->unsignedBigInteger('author_id');
             // $table->foreign('author_id')->references('id')->on('users');
 
-            // membuat foreign key dengan index
+            // membuat foreign key untuk author dengan index
             $table->foreignId('author_id')->constrained(
                 table: 'users',
                 indexName: 'posts_user_id'
+            );
+
+            // membuat foreign key untuk category dengan index
+            $table->foreignId('category_id')->constrained(
+                table: 'categories',
+                indexName: 'posts_category_id'
             );
             $table->text('body');
         });

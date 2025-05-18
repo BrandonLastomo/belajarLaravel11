@@ -10,7 +10,7 @@
         {{-- pakai dateformat --}}
         {{-- <a href="#">{{ $post['author'] }}</a> | {{ $post['created_at']->format('D, d F Y') }} --}}
         {{-- pakai diffForHumans --}}
-        <a href="/authors/{{ $post->author->id }}" class="hover:underline">{{ $post->author->name }}</a> | {{ $post['created_at']->diffForHumans() }}
+        <a href="/authors/{{ $post->author->id }}" class="hover:underline">{{ $post->author->name }}</a> | <a href="/categories/{{ $post->category->id }}" class="hover:underline">{{ $post->category->name }}</a> | {{ $post['created_at']->diffForHumans() }}
       </div>
       <p class="my-4 font-light">
         {{ Str::limit($post['body'], 150) }}
