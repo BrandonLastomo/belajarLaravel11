@@ -16,7 +16,16 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('author');
+
+            // membuat foreign key tanpa membuat index
+            // $table->unsignedBigInteger('author_id');
+            // $table->foreign('author_id')->references('id')->on('users');
+
+            // membuat foreign key dengan index
+            $table->foreignId('author_id')->constrained(
+                table: 'users',
+                indexName: 'posts_user_id'
+            );
             $table->text('body');
         });
     }

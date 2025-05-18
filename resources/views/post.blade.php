@@ -7,7 +7,7 @@
         {{-- pakai dateformat --}}
         {{-- <a href="#">{{ $post['author'] }}</a> | {{ $post['created_at']->format('D, d F Y') }} --}}
         {{-- pakai diffForHumans --}}
-        <a href="#">{{ $post['author'] }}</a> | {{ $post['created_at']->diffForHumans() }}
+        <a href="/authors/{{ $post->author->id }}" class="hover:underline">{{ $post->author->name }}</a> | {{ $post['created_at']->diffForHumans() }}
       </div>
       <p class="my-4 font-light">
         {{ $post['body']}}

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,22 @@ Route::get('/posts/{post:slug}', function(Post $post){
 
     return view('post', ['title' => 'Single Post', 'post' => $post]);
 
+});
+
+// my ver
+// Route::get('/authors/{author:id}', function($authorId){
+//     return view('author', [
+//         'title' => 'Posts by Author',
+//         'posts' => Post::where('author_id', $authorId)->get()
+//     ]);
+// });
+
+// wpu ver
+Route::get('/authors/{author}', function(User $author){
+    return view('posts', [
+        'title' => 'Posts by ' . $author->name,
+        'posts' => $author->posts
+    ]);
 });
 
 Route::get('/contact', function () {
