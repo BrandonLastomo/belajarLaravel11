@@ -35,15 +35,13 @@ Route::get('/posts/{post:slug}', function(Post $post){
 // wpu ver
 Route::get('/authors/{user:username}', function(User $user){
     return view('posts', [
-        'title' => count($user->posts) . ' Posts by ' . $user->name,
-        'posts' => $user->posts
+        'title' => count($user->posts) . ' Posts by ' . $user->name, 'posts' => $user->posts
     ]);
 });
 
-Route::get('/categories/{category}', function(Category $category){
+Route::get('/categories/{category:slug}', function(Category $category){
     return view('posts', [
-        'title' => 'Posts in ' . $category->name,
-        'posts' => $category->posts
+        'title' => 'Posts in ' . $category->name, 'posts' => $category->posts
     ]);
 });
 

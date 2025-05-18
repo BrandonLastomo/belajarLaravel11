@@ -20,12 +20,15 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
+            // UNTUK MENGGUNAKAN FACTORY DENGAN LEBIH DARI SATU RECYCLE, GUNAKAN (CONTOH):
+            // App\Models\Post::factory(n)->recycle([User::factory(n)->create(), Category::factory(n)->create()])->create();
             'title' => fake()->sentence(),
             'slug' => Str::slug(fake()->sentence()),
             // mengganti author dengan author_id sekalian buat factory
             'author_id' => User::factory(),
             // buat factory untuk category
-            'category_id' => fake()->randomElement(Category::pluck('id')),
+            'category_id' => Category::factory(),
+            // 'category_id' => fake()->randomElement(Category::pluck('id')),
             'body' => fake()->paragraph()
         ];
     }
