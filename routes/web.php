@@ -11,8 +11,16 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about', ['title' => 'about']);
 });
+
+// Route::get('/posts', function () {
+//     // eager loading to prevent N+1 problem
+//     $posts = Post::latest()->with(['author', 'category'])->get();
+//     return view('posts', ['title' => 'blog', 'posts' => $posts]);
+// });
+
 Route::get('/posts', function () {
-    return view('posts', ['title' => 'blog', 'posts' => Post::all()]);
+    $posts = Post::latest()->get();
+    return view('posts', ['title' => 'blog', 'posts' => $posts]);
 });
 
 // change to route model binding
@@ -33,6 +41,14 @@ Route::get('/posts/{post:slug}', function(Post $post){
 // });
 
 // wpu ver
+// Route::get('/authors/{user:username}', function(User $user){
+//     // lazy eager loading to prevent N+1 problem
+//     $posts = $user->posts->load('category', 'author');
+//     return view('posts', [
+//         'title' => count($posts) . ' Posts by ' . $user->name, 'posts' => $posts
+//     ]);
+// });
+
 Route::get('/authors/{user:username}', function(User $user){
     return view('posts', [
         'title' => count($user->posts) . ' Posts by ' . $user->name, 'posts' => $user->posts
